@@ -30,11 +30,7 @@ def rebootInstance(instanceID):
         print(f"REBOOT ERROR : {e}")
 
 
-def main():
-    print("---TARGET INSTANCES---")
-    for instance in TARGET_INSTANCE_IDs:
-        print(instance, end=", ")
+def lambda_handler(event, context):
     stopInstance(TARGET_INSTANCE_IDs)
-
-
-main()
+    # startInstance(TARGET_INSTANCE_IDs)
+    # rebootInstance(TARGET_INSTANCE_IDs)
