@@ -1,11 +1,9 @@
-from ssl import ALERT_DESCRIPTION_ACCESS_DENIED
 import requests
 import hashlib
 import hmac
 import base64
 import requests
 import time
-import xmltodict
 
 ######################################################
 ACCESS_KEY = "5724A942A8DBEDD50524"
@@ -16,7 +14,7 @@ TARGET_INSTANCE_IDs = ["6768447"]
 
 method = "GET"
 url = "https://ncloud.apigw.ntruss.com"
-uri = "/vserver/v2/stopServerInstances"
+uri = "/vserver/v2/startServerInstances"
 
 
 for num, ID in enumerate(TARGET_INSTANCE_IDs):
@@ -39,7 +37,7 @@ def makeSignature():
     return signKey
 
 
-def main():
+def main(args):
     print(f"REQUEST {url + uri}")
     signKey = makeSignature()
     headers = {
@@ -51,11 +49,8 @@ def main():
     returnCode = r.status_code
     if returnCode == 200:
         data = r.text
-        data = xmltodict.parse(data)
-        data = data["stopServerInstancesResponse"]["returnMessage"]
-        print(f"REQUEST RESULT : {data}")
+        # data = xmltodict.parse(data)
+        # data = data["startServerInstancesResponse"]["returnMessage"]
+        return {"REQUEST RESULT": data}
     else:
-        print(f"Error Code: {returnCode} / {r.text}")
-
-
-main()
+        return {"Error Code": returnCode}
