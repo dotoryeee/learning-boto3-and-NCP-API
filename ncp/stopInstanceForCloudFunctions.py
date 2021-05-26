@@ -4,6 +4,7 @@ import hmac
 import base64
 import requests
 import time
+import json
 
 ######################################################
 ACCESS_KEY = "5724A942A8DBEDD50524"
@@ -38,7 +39,7 @@ def makeSignature():
 
 
 def main(args):
-    print(f"REQUEST {url + uri}")
+    # print(f"REQUEST {url + uri}")
     signKey = makeSignature()
     headers = {
         "x-ncp-iam-access-key": ACCESS_KEY,
@@ -49,8 +50,8 @@ def main(args):
     returnCode = r.status_code
     if returnCode == 200:
         data = r.text
-        # data = xmltodict.parse(data)
-        # data = data["stopServerInstancesResponse"]["returnMessage"]
-        return {"REQUEST RESULT": data}
+        data = json.loads(r.text)
+        data = data["stopServerInstancesResponse"]["returnMessage"]
+        return {"REQUEST stop RESULT": data}
     else:
         return {"Error Code": returnCode}

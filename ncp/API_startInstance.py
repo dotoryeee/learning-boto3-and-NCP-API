@@ -36,7 +36,7 @@ def makeSignature():
 
 
 def main():
-    print(f"REQUEST {url + uri}")
+    # print(f"REQUEST {url + uri}")
     signKey = makeSignature()
     headers = {
         "x-ncp-iam-access-key": ACCESS_KEY,
@@ -48,7 +48,7 @@ def main():
     if returnCode == 200:
         data = json.loads(r.text)
         data = data["startServerInstancesResponse"]["returnMessage"]
-        print(f"REQUEST RESULT : {data}")
+        print(f"REQUEST START RESULT : {data}")
     else:
         print(f"Error Code: {returnCode} / {r.text}")
 
