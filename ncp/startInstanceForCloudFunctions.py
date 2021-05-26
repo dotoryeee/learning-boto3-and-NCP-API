@@ -15,14 +15,11 @@ TARGET_INSTANCE_IDs = ["6768447"]
 
 method = "GET"
 url = "https://ncloud.apigw.ntruss.com"
-uri = "/vserver/v2/startServerInstances"
+uri = "/vserver/v2/startServerInstances?responseFormatType=json"
 
 
 for num, ID in enumerate(TARGET_INSTANCE_IDs):
-    if num == 0:
-        uri = f"{uri}?serverInstanceNoList.{num+1}={ID}"
-    else:
-        uri = f"{uri}&serverInstanceNoList.{num+1}={ID}"
+    uri = f"{uri}&serverInstanceNoList.{num+1}={ID}"
 
 
 time_stamp = str(int(time.time() * 1000))
