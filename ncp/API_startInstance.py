@@ -48,7 +48,7 @@ def main():
     if returnCode == 200:
         data = json.loads(r.text)
         data = data["startServerInstancesResponse"]["returnMessage"]
-        print(f"REQUEST START RESULT : {data}")
+        print(f"START REQUEST : {data}")
     else:
         print(f"Error Code: {returnCode} / {r.text}")
 

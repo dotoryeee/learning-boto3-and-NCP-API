@@ -49,6 +49,6 @@ def main(args):
         data = r.text
         data = json.loads(r.text)
         data = data["stopServerInstancesResponse"]["returnMessage"]
-        return {"REQUEST stop RESULT": data}
+        return {"STOP REQUEST": data}
     else:
         return {"Error Code": returnCode}
