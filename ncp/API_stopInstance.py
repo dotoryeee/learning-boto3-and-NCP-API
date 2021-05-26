@@ -15,7 +15,7 @@ TARGET_INSTANCE_IDs = ["6768447"]
 
 method = "GET"
 url = "https://ncloud.apigw.ntruss.com"
-uri = "/vserver/v2/startServerInstances"
+uri = "/vserver/v2/stopServerInstances"
 
 
 for num, ID in enumerate(TARGET_INSTANCE_IDs):
@@ -51,7 +51,7 @@ def main():
     if returnCode == 200:
         data = r.text
         data = xmltodict.parse(data)
-        data = data["startServerInstancesResponse"]["returnMessage"]
+        data = data["stopServerInstancesResponse"]["returnMessage"]
         print(f"REQUEST RESULT : {data}")
     else:
         print(f"Error Code: {returnCode} / {r.text}")
