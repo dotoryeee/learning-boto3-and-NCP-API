@@ -43,8 +43,8 @@ def main():
         data = data["getServerInstanceListResponse"]["serverInstanceList"][
             "serverInstance"
         ]
-        print("-------------------현재 동작중인 서버 목록------------------")
-        print("  서버이름\t  인스턴스ID\t  상태\t\t퍼블릭IP")
+        print("----------------------서버 목록--------------------------")
+        print("  서버이름\t 인스턴스ID\t   상태\t\t퍼블릭IP")
         for i in data:
             print(
                 f'{i["serverName"]}\t  {i["serverInstanceNo"]}\t  {i["serverInstanceStatusName"]}\t  {i["publicIp"]}'

@@ -4,7 +4,7 @@ import hmac
 import base64
 import requests
 import time
-import xmltodict
+import json
 
 ######################################################
 ACCESS_KEY = "5724A942A8DBEDD50524"
@@ -15,14 +15,11 @@ TARGET_INSTANCE_IDs = ["6768447"]
 
 method = "GET"
 url = "https://ncloud.apigw.ntruss.com"
-uri = "/vserver/v2/startServerInstances"
+uri = "/vserver/v2/startServerInstances?responseFormatType=json"
 
 
 for num, ID in enumerate(TARGET_INSTANCE_IDs):
-    if num == 0:
-        uri = f"{uri}?serverInstanceNoList.{num+1}={ID}"
-    else:
-        uri = f"{uri}&serverInstanceNoList.{num+1}={ID}"
+    uri = f"{uri}&serverInstanceNoList.{num+1}={ID}"
 
 
 time_stamp = str(int(time.time() * 1000))
@@ -49,8 +46,7 @@ def main():
     r = requests.get(url + uri, headers=headers)
     returnCode = r.status_code
     if returnCode == 200:
-        data = r.text
-        data = xmltodict.parse(data)
+        data = json.loads(r.text)
         data = data["startServerInstancesResponse"]["returnMessage"]
         print(f"REQUEST RESULT : {data}")
     else:
