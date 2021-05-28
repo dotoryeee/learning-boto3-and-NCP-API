@@ -1,6 +1,5 @@
 import boto3
 from botocore.exceptions import ClientError
-import json
 
 TARGET_INSTANCE_IDs = ["i-0f8e23d613b7d62f0", "i-0a252bf0421dbbeb4"]
 
