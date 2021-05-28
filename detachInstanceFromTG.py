@@ -1,9 +1,8 @@
 from logging import error
 import boto3
-from stopAndStartEC2 import stopInstance
 
-TARGET_INSTANCE_IDs = ["i-082ec8f7f04524c30"]
-TARGET_GROUP_ARN = ""
+TARGET_INSTANCE_IDs = ["i-0f8e23d613b7d62f0"]
+TARGET_GROUP_ARN = "arn:aws:elasticloadbalancing:ap-northeast-2:737382971423:targetgroup/testTG/36174c22e12f595e"
 
 elb = boto3.client("elbv2")
 
@@ -18,3 +17,11 @@ def detachInstance(TGarn, instanceID):
         return response
     except:
         raise Exception("ERROR : FAIL TO DETACH INSTANCE FORM TARGET GROUP")
+
+
+def test():
+    for instance in TARGET_INSTANCE_IDs:
+        detachInstance(TARGET_GROUP_ARN, instance)
+
+
+test()

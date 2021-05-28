@@ -1,7 +1,8 @@
 import boto3
 from botocore.exceptions import ClientError
+import json
 
-TARGET_INSTANCE_IDs = ["i-082ec8f7f04524c30"]
+TARGET_INSTANCE_IDs = ["i-0f8e23d613b7d62f0", "i-0a252bf0421dbbeb4"]
 
 ec2 = boto3.client("ec2")
 
@@ -31,6 +32,9 @@ def rebootInstance(instanceID):
 
 
 def lambda_handler(event, context):
-    stopInstance(TARGET_INSTANCE_IDs)
-    # startInstance(TARGET_INSTANCE_IDs)
+    # stopInstance(TARGET_INSTANCE_IDs)
+    startInstance(TARGET_INSTANCE_IDs)
     # rebootInstance(TARGET_INSTANCE_IDs)
+
+
+# lambda_handler("test", "test")

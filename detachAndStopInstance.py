@@ -3,8 +3,8 @@ import boto3
 from stopAndStartEC2 import stopInstance
 from detachInstanceFromTG import detachInstance
 
-TARGET_INSTANCE_IDs = ["i-082ec8f7f04524c30"]
-TARGET_GROUP_ARN = ""
+TARGET_INSTANCE_IDs = ["i-0f8e23d613b7d62f0"]
+TARGET_GROUP_ARN = "arn:aws:elasticloadbalancing:ap-northeast-2:737382971423:targetgroup/testTG/36174c22e12f595e"
 
 elb = boto3.client("elbv2")
 
