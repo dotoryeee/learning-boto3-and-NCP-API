@@ -46,7 +46,7 @@ def test():
     for instance in TARGET_INSTANCE_IDs:
         # detachInstance(TARGET_GROUP_ARN, instance)
         # appendInstance(TARGET_GROUP_ARN, instance)
-        checkStatus(TARGET_GROUP_ARN, instance)
+        checkStatus(TARGET_GROUP_ARN, instance)  # draining / unused
 
 
 test()
