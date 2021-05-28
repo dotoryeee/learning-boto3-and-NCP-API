@@ -44,10 +44,10 @@ def main():
             "serverInstance"
         ]
         print("----------------------서버 목록--------------------------")
-        print("  서버이름\t 인스턴스ID\t   상태\t\t퍼블릭IP")
+        print("  서버이름\t\t 인스턴스ID\t   상태\t\t퍼블릭IP")
         for i in data:
             print(
-                f'{i["serverName"]}\t  {i["serverInstanceNo"]}\t  {i["serverInstanceStatusName"]}\t  {i["publicIp"]}'
+                f'{i["serverName"].ljust(20)}\t  {i["serverInstanceNo"]}\t  {i["serverInstanceStatusName"]}\t  {i["publicIp"]}'
             )
         print("--------------------------------------------------------")
     else:
