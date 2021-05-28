@@ -36,17 +36,17 @@ def checkStatus(TGarn, instanceID):
         TargetGroupArn=TGarn,
         Targets=[{"Id": instanceID}],  # dict in list
     )
+    print(response["TargetHealthDescriptions"][0]["TargetHealth"]["State"])
     # print(
     #     f'{response["TargetHealthDescriptions"][0]["Target"]["Id"]} is {response["TargetHealthDescriptions"][0]["TargetHealth"]["State"]}'
     # )
-    print(response["TargetHealthDescriptions"][0]["TargetHealth"]["State"])
 
 
-def test():
+def lambda_handler(event, context):
     for instance in TARGET_INSTANCE_IDs:
-        # detachInstance(TARGET_GROUP_ARN, instance)
+        detachInstance(TARGET_GROUP_ARN, instance)
         # appendInstance(TARGET_GROUP_ARN, instance)
-        checkStatus(TARGET_GROUP_ARN, instance)  # draining / unused
+        # checkStatus(TARGET_GROUP_ARN, instance)  # draining / unused
 
 
-test()
+lambda_handler("test", "test")
