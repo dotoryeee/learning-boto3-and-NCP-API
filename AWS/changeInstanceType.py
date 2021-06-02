@@ -15,8 +15,10 @@ def stopInstance(instanceID):
         waiter = ec2.get_waiter("instance_stopped")
         waiter.wait(InstanceIds=[instanceID])
         print(f"SUCCESS")
+        return True  # 인스턴스 정지 성공
     except:
         print(f"FAILED : STOP INSTANCE {instanceID}")
+        return False
 
 
 def modifyInstance(instanceID):
@@ -39,9 +41,10 @@ def startInstance(instanceID):
 
 def main():
     for instanceID in TARGET_INSTANCE_IDs:
-        stopInstance(instanceID)
-        modifyInstance(instanceID)
-        startInstance(instanceID)
+        isStop = stopInstance(instanceID)  # isStop는 인스턴스 정지 성공 유무 표시용
+        if isStop:
+            modifyInstance(instanceID)
+            startInstance(instanceID)
 
 
 main()

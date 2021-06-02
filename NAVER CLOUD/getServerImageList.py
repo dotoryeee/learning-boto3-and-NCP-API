@@ -9,14 +9,12 @@ import json
 ######################################################
 ACCESS_KEY = "FEFECEECC2B8E2FCB41C"
 SECRET_KEY = "76C215E35B101A66F01BF883CAF76CB246D62710"
-IMAGE_CODE = "SW.VSVR.OS.LNX64.CNTOS.0708.B050"
 ######################################################
 
 
 method = "GET"
 url = "https://ncloud.apigw.ntruss.com"
-uri = "/vserver/v2/getServerProductList?responseFormatType=json"
-uri = f"{uri}&serverImageProductCode={IMAGE_CODE}"
+uri = "/vserver/v2/getServerImageProductList?responseFormatType=json"
 
 time_stamp = str(int(time.time() * 1000))
 
@@ -42,13 +40,16 @@ def main():
     returnCode = r.status_code
     if returnCode == 200:
         data = json.loads(r.text)
-        data = data["getServerProductListResponse"]["productList"]
-        print("=" * 35, end="")
-        print(f"{IMAGE_CODE} 에서 사용 가능한 서버 스펙", end="")
-        print("=" * 35)
-        print("\t\t\t서버스펙\t\t\t\t\t\t\t스펙코드")
+        data = data["getServerImageProductListResponse"]["productList"]
+        print("=" * 40, end="")
+        print("이미지 목록", end="")
+        print("=" * 40)
+        print("타입\t\t이미지 이름\t\t\t\t\t이미지 코드")
         for i in data:
-            print(f'{i["productDescription"].ljust(80)}\t{i["productCode"]}')
+            print(
+                f'{i["productType"]["code"]}\t{i["productDescription"].ljust(40)}\t  {i["productCode"]}'
+            )
+        print("=" * 90)
     else:
         print(f"Error Code: {returnCode} / {r.text}")
 
