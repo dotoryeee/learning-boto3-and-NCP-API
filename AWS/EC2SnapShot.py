@@ -13,8 +13,7 @@ def lambda_handler(event, context):
     )
     
     time_format = "%Y-%m-%d-%H:%M:%S"
-    timestamp = datetime.now(timezone('Asia/Seoul'))
-    # print(timestamp.strftime(time_format))    
+    timestamp = datetime.now(timezone('Asia/Seoul')).strftime(time_format)
 
     for instance in instances.all():
         print('='*18, end='')
