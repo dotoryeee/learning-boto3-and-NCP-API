@@ -1,5 +1,7 @@
 from datetime import datetime
+from pytz import timezone
 import boto3
+
 
 def lambda_handler(event, context):
     ec2 = boto3.resource('ec2', region_name="ap-northeast-2")
@@ -9,8 +11,10 @@ def lambda_handler(event, context):
             {'Name': 'tag:backup', 'Values': ['true']}
         ]
     )
-
-    timestamp = datetime.utcnow().isoformat()
+    
+    time_format = "%Y-%m-%d-%H:%M:%S"
+    timestamp = datetime.now(timezone('Asia/Seoul'))
+    # print(timestamp.strftime(time_format))    
 
     for instance in instances.all():
         print('='*18, end='')
