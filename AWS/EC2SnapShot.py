@@ -29,8 +29,7 @@ def makeSnapshot():
                 snapshot = volume.create_snapshot(Description=f'{instance.id}/{volume.id}/{timestamp}')
                 print(f"SNAPSHOT ID : {snapshot.id}")
             except Exception as e:
-                print(f'ERROR : fail to make snapshot {volume.id} / {e}')
-                continue
+                print(f'ERROR : FAIL TO MAKE SNAPSHOT \n {e}')
 
 def clearSnapshot():
     account_id = boto3.client('sts').get_caller_identity().get('Account')
@@ -48,8 +47,7 @@ def clearSnapshot():
                 ec2.delete_snapshot(SnapshotId=id)
                 print(f'{id} 삭제 성공')
             except Exception as e:
-                print(f'ERROR : fail to remove {id} / {e}')
-                continue
+                print(f'ERROR : fail to remove {id} \n {e}')
     else:
         print('삭제할 스냅샷 없음'.rjust(32))
 
